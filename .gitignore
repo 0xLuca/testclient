@@ -1,0 +1,31 @@
+.gradle
+build/
+
+# Source code
+src/*
+
+#Run files
+runclient
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+#IDE files
+.idea
+*.iml
+run/
+
+out/
+
+# Generated Minecraft Code
+src/main/resources/assets/minecraft/models
+src/main/resources/assets/minecraft/optifine
+src/main/resources/assets/minecraft/shaders
+
+src/main/java/Start.java
+src/main/java/com/
+src/main/java/net/
+src/main/java/mcp/
