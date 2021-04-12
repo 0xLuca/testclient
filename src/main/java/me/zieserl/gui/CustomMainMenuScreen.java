@@ -88,19 +88,41 @@ public class CustomMainMenuScreen extends Screen {
 
         Button.ITooltip tooltip = multiplayerEnabled ? Button.field_238486_s_ : (button, matrixStack, mouseX, mouseY) -> {
             if (!button.active) {
-                this.renderTooltip(matrixStack, this.minecraft.fontRenderer.trimStringToWidth(new TranslationTextComponent("title.multiplayer.disabled"), Math.max(this.width / 2 - 43, 170)), mouseX, mouseY);
+                this.renderTooltip(
+                        matrixStack,
+                        this.minecraft.fontRenderer.trimStringToWidth(
+                                new TranslationTextComponent("title.multiplayer.disabled"),
+                                Math.max(this.width / 2 - 43, 170)
+                        ),
+                        mouseX,
+                        mouseY);
             }
         };
 
-        (this.addButton(new Button(this.width / 2 - 100, yIn + rowHeightIn, 200, 20, new TranslationTextComponent("menu.multiplayer"),
-                (button) -> {
-                    Screen screen = this.minecraft.gameSettings.skipMultiplayerWarning ? new MultiplayerScreen(this) : new MultiplayerWarningScreen(this);
-                    this.minecraft.displayGuiScreen(screen);
-                }, tooltip))).active = multiplayerEnabled;
+        this.addButton(
+                new Button(this.width / 2 - 100,
+                        yIn + rowHeightIn,
+                        200,
+                        20,
+                        new TranslationTextComponent("menu.multiplayer"),
+                        (button) -> {
+                            Screen screen = this.minecraft.gameSettings.skipMultiplayerWarning ? new MultiplayerScreen(this) : new MultiplayerWarningScreen(this);
+                            this.minecraft.displayGuiScreen(screen);
+                        }, tooltip
+                )
+        ).active = multiplayerEnabled;
 
-        (this.addButton(new Button(this.width / 2 - 100, yIn + rowHeightIn * 2, 200, 20, new TranslationTextComponent("menu.online"),
-                (button) -> this.switchToRealms(), tooltip)
-        )).active = multiplayerEnabled;
+        this.addButton(
+                new Button(
+                        this.width / 2 - 100,
+                        yIn + rowHeightIn * 2,
+                        200,
+                        20,
+                        new TranslationTextComponent("menu.online"),
+                        (button) -> this.switchToRealms(),
+                        tooltip
+                )
+        ).active = multiplayerEnabled;
     }
 
     private void switchToRealms() {
@@ -116,6 +138,12 @@ public class CustomMainMenuScreen extends Screen {
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 
+    /**
+     * This method cycles through the parts of an split-up gif and repeats them
+     * for an animated background.
+     *
+     * @param matrixStack MatrixStack for rendering the image
+     */
     @Override
     public void renderBackground(MatrixStack matrixStack) {
         currentBackgroundImage += 0.1;
